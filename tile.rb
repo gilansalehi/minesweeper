@@ -4,7 +4,7 @@ class Tile
 
   attr_reader :value, :bomb, :status
 
-  def initialize(pos, bomb = false, status = :hidden)
+  def initialize(pos, bomb = false, status = :.)
     @pos = # [x, y]
     @bomb = bomb # a boolean, default to false (true if contains a bomb)
     @status = status # hidden or revealed or Flagged
