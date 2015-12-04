@@ -3,7 +3,7 @@ require_relative 'tile'
 
 class Game
 
-  attr_reader :board
+  attr_accessor :board
 
   # Game initilaizes a board
   # then in a play method run a loop until game over
@@ -14,12 +14,14 @@ class Game
 
   def play
     #setup
-    board.populate
+    #board.populate
+    # board.render
+    # board.assign_bomb
+    # until over?
     board.render
-    until over?
     #  prompt_user # to be defined
-      board.render
-    end
+    #  board.render
+    # end
 
   end
 
@@ -29,11 +31,12 @@ class Game
   end
 
   def prompt_user
+
   end
 
 end
 
 if __FILE__ == $PROGRAM_NAME
-  minesweeper_game = Game.new()
+  minesweeper_game = Game.new(8)
   minesweeper_game.play
 end
