@@ -1,11 +1,12 @@
 class Tile
 
-  SYMBOLS = [:., :F, :*]
+  SYMBOLS = [:H, :F, :*]
 
-  attr_reader :value, :bomb, :status
+  attr_reader :value, :bomb
+  attr_accessor :status
 
-  def initialize(pos, bomb = false, status = :.)
-    @pos = # [x, y]
+  def initialize(pos, bomb = false, status = :H)
+    @pos = pos
     @bomb = bomb # a boolean, default to false (true if contains a bomb)
     @status = status # hidden or revealed or Flagged
     @value = neighbor_bomb_count
@@ -14,7 +15,7 @@ class Tile
   def reveal
     # if my value is zero, call reveal on all my neighbors too
     # maybe delegate this responsibility to the Board class
-    self.status = :revealed
+    @status = :revealed
     bomb ? :* : value
   end
 
@@ -25,6 +26,6 @@ class Tile
   end
 
   def set_bomb
-    self.bomb = true
+    @bomb = true
   end
 end

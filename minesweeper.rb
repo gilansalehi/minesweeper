@@ -1,4 +1,9 @@
+require_relative 'board'
+require_relative 'tile'
+
 class Game
+
+  attr_reader :board
 
   # Game initilaizes a board
   # then in a play method run a loop until game over
@@ -9,9 +14,10 @@ class Game
 
   def play
     #setup
+    board.populate
     board.render
     until over?
-      prompt_user # to be defined
+    #  prompt_user # to be defined
       board.render
     end
 
