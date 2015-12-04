@@ -10,12 +10,12 @@ class Tile
   attr_reader :pos, :board
   attr_accessor :value, :bomb, :status
 
-  def initialize(board, pos, bomb = false, status = :revealed)
+  def initialize(board, pos, bomb = false, status = :H)
     @board = board
     @pos = pos
     @bomb = bomb # a boolean, default to false (true if contains a bomb)
     @status = status # hidden or revealed or Flagged
-    @value = neighbor_bomb_count
+    @value = 0 # neighbor_bomb_count
   end
 
   def reveal
@@ -29,28 +29,24 @@ class Tile
   end
 
   #returns an array of array positions
-  def neighbors
-    neighbor_pos = []
-    NEIGHBORS.each do | n_pos |
-      x = pos[0] + n_pos[0]
-      y = pos[1] + n_pos[1]
-      neighbor_pos << [x, y]
-    end
-    neighbor_pos
-  end
-  
-  #returns integer
-  def neighbor_bomb_count
-    bomb_count = 0
-    neighbors.each do | n_pos |
-      p n_pos
-      bomb_count += 1 if grid.has_bomb?(n_pos)
-    end
-
-    bomb_count
-  end
-
-  def set_bomb
-    @bomb = true
-  end
+  # def neighbors
+  #   neighbor_pos = []
+  #   NEIGHBORS.each do | n_pos |
+  #     x = pos[0] + n_pos[0]
+  #     y = pos[1] + n_pos[1]
+  #     neighbor_pos << [x, y]
+  #   end
+  #   neighbor_pos
+  # end
+  #
+  # #returns integer
+  # def neighbor_bomb_count
+  #   bomb_count = 0
+  #   neighbors.each do | n_pos |
+  #     p n_pos
+  #     bomb_count += 1 if board[*n_pos].bomb
+  #   end
+  #
+  #   bomb_count
+  # end
 end
